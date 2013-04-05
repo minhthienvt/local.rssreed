@@ -1,0 +1,111 @@
+{% extends 'SMAdminBundle::admin.html.twig' %}
+{% block body %}
+<h1>Rss Feed</h1>
+<hr />
+<table cellpadding="5" cellspacing="5">
+    <tr>
+        <td valign="top" width="500">
+            <table class="record_properties" cellpadding="5px;" cellspacing="5px;">
+                <tbody>
+                    <tr>
+                        <th align="right">Id</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">Title</th>
+                        <td>{{ entity.title | raw }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">Description</th>
+                        <td>{{ entity.description | raw }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">External_link</th>
+                        <td>{{ entity.externallink }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">Internal_link</th>
+                        <td>{{ entity.internallink }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">Time_refesh</th>
+                        <td>{{ entity.timerefesh }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">Automatic_refesh</th>
+                        <td>
+                            {% if entity.automaticrefesh == 1%}
+                                Enable
+                            {% else %}
+                                Disable
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="right">Begin_refesh</th>
+                        <td>{{ entity.beginrefesh }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">End_refesh</th>
+                        <td>{{ entity.endrefesh }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">User_id</th>
+                        <td>{% if entity.user is not null %}
+                                {{ entity.user.fullname }}
+                            {% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">Status</th>
+                        <td>{% if entity.mainStatus == 1%}
+                                Validate
+                            {% elseif entity.mainStatus == '2' %}
+                                Non validate
+                            {% else %}
+                                Non disponible
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="right">Created_at</th>
+                        <td>{{ entity.createdat|date('Y-m-d') }}</td>
+                    </tr>
+                    <tr>
+                        <th align="right">Updated_at</th>
+                        <td>{{ entity.updatedat|date('Y-m-d') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+            <div class="form-actions">
+                <a href="{{ path('admin_rssfeed', {'page' : 1}) }}" class="btn">Back To List</a>
+                &nbsp;
+                <a href="{{ path('admin_rssfeed_edit', { 'id': entity.id }) }}" class="btn">Edit</a>
+            </div>
+        </td>
+
+        <td valign="top">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th colspan="2"><h3>List Feed</h3></th>
+                </tr>
+                {% if itemFeeds['entries'] is defined %}
+                    {% for feed in itemFeeds['entries']%}
+                    <tr>
+                        <td>
+                            <span>{{ feed['title'] | raw }}</span>
+                            <br />
+                            <span>{{ feed['description'] | raw }} </span>
+                            <br /><br />
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+            </table>
+        </td>
+    </tr>
+</table>
+{% endblock %}
+
+{% block footer %}{% endblock %}

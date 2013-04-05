@@ -1,0 +1,65 @@
+{% extends 'SMAdminBundle::admin.html.twig' %}
+{% block body%}
+<h1>Language list</h1>
+
+<div class="btn-group nav">
+    <a href="{{ path('admin_language_new') }}" class="btn btn-primary">Create a new entry</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Lang key</th>
+            <th>Is default</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('admin_language_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.langkey }}</td>
+            <td>
+                {% if entity.isdefault == 1 %}
+                    <input type="checkbox" checked="checked" class="defaultCheckBox" disabled="true"/>
+                {% else %}
+                    <input type="checkbox" class="defaultCheckBox" src="{{ path('admin_language_set_default', { 'id': entity.id }) }}"/>
+                {% endif%}
+            </td>
+            <td>
+                <a href="{{ path('admin_language_show', { 'id': entity.id }) }}">Show</a>
+                &nbsp; | &nbsp;
+                <a href="{{ path('admin_language_edit', { 'id': entity.id }) }}">Edit</a>
+                {% if entity.isdefault != 1 %}
+                &nbsp; | &nbsp;
+                <a class="delete" rel="{{ path('admin_language_delete', { 'id': entity.id }) }}">Delete</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{# Pagination for list #}
+{% if lastPage > 1 %}
+<div class="pagination" style="text-align: right;">
+    <ul>
+        <li><a href="{{ path('admin_language', { 'page': 1 }) }}">«</a></li>
+        <li><a href="{{ path('admin_language', { 'page': previousPage }) }}">Previous</a></li>
+    {% for page in 1..lastPage %}
+      {% if page == currentPage %}
+        <li class="active"><a href="{{ path('admin_language', {'page': page }) }}">{{ page }}</a></li>
+      {% else %}
+        <li><a href="{{ path('admin_language', {'page': page }) }}">{{ page }}</a></li>
+      {% endif %}
+    {% endfor %}
+        <li><a href="{{ path('admin_language', {'page': nextPage }) }}">Next</a></li>
+        <li><a href="{{ path('admin_language', {'page': lastPage }) }}">»</a></li>
+    </ul>
+</div>
+{% endif %}
+
+{% endblock %}

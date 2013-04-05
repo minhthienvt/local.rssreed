@@ -1,0 +1,101 @@
+{% extends 'SMAdminBundle::admin.html.twig' %}
+{% block body%}
+<h1>Rss Feed list</h1>
+
+<div class="nav">
+    <a href="{{ path('admin_rssfeed_new') }}" class="btn btn-primary">Create a new entry</a>
+    <a id="btn-del" class="btn btn-primary" rel="{{ path('admin_rssfeed_delete_all') }}">Delete All</a>
+</div>
+<form method="post" name="frmRssFeed" id="frmRssFeed" action="#">
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th><input type="checkbox" name="checkAll" /></th>
+            <th>Id</th>
+            <th>Created date</th>
+            <th>Title</th>
+            <th>Time Refesh</th>
+            <th>Time Range</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><input type="checkbox" value="{{entity.id}}" name="checklist[]"/> </td>
+            <td><a href="{{ path('admin_rssfeed_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.createdAt|date('d/m/Y')}}</td>
+            <td><a href="{{ path('admin_rssfeed_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+            <td>
+                {% if entity.timerefesh == '43200' %}
+                    1 Months
+                {% elseif entity.timerefesh == '20160' %}
+                    2 Weeks
+                {% elseif entity.timerefesh == '10080' %}
+                    1 Week
+                {% else %}
+                    {{entity.timerefesh}} Minutes
+                {% endif %}
+            </td>
+
+            <td>{{ entity.beginrefesh }} -
+                {{ entity.endrefesh }}
+            </td>
+            <td>
+                {% if entity.email is null %}
+                    {% if entity.user is not null %}
+                        {{ entity.user.fullname }}
+                    {% endif %}
+                {% else %}
+                    {{ entity.email }}
+                {% endif %}
+            </td>
+            <td>
+                {% if entity.mainStatus == '1'%}
+                    Validate
+                {% elseif entity.mainStatus == '2' %}
+                    Non validate
+                {% else %}
+                    Non disponible
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ path('admin_rssfeed_show', { 'id': entity.id }) }}">Show</a>
+                &nbsp; | &nbsp;
+                <a href="{{ path('admin_rssfeed_edit', { 'id': entity.id }) }}">Edit</a>
+                &nbsp; | &nbsp;
+                <a class="delete" rel="{{ path('admin_rssfeed_delete', { 'id': entity.id }) }}">Delete</a>
+                <!--
+                &nbsp; | &nbsp;
+                <a href="{{ path('admin_rssfeed_refesh', { 'id': entity.id }) }}">Refesh Rss</a>
+                -->
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</form>
+
+{# Pagination for list #}
+{% if lastPage > 1 %}
+<div class="pagination" style="text-align: right;">
+    <ul>
+        <li><a href="{{ path('admin_rssfeed', { 'page': 1 }) }}">«</a></li>
+        <li><a href="{{ path('admin_rssfeed', { 'page': previousPage }) }}">Previous</a></li>
+    {% for page in 1..lastPage %}
+      {% if page == currentPage %}
+        <li class="active"><a href="{{ path('admin_rssfeed', {'page': page }) }}">{{ page }}</a></li>
+      {% else %}
+        <li><a href="{{ path('admin_rssfeed', {'page': page }) }}">{{ page }}</a></li>
+      {% endif %}
+    {% endfor %}
+        <li><a href="{{ path('admin_rssfeed', {'page': nextPage }) }}">Next</a></li>
+        <li><a href="{{ path('admin_rssfeed', {'page': lastPage }) }}">»</a></li>
+    </ul>
+</div>
+{% endif %}
+
+{% endblock %}

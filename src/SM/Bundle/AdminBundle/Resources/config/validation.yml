@@ -1,0 +1,17 @@
+SM\Bundle\AdminBundle\Entity\RssFeed:
+    properties:
+        begin_refesh:
+            - Range:
+                min: 0
+                max: 23
+                minMessage: You must be at least 0 to enter
+                maxMessage: You cannot be taller than 23 to enter
+        end_refesh:
+            - Range:
+                min: 0
+                max: 23
+                minMessage: You must be at least 0 to enter
+                maxMessage: You cannot be taller than 23 to enter
+        external_link:
+            #- Regex: "/[A-Za-z0-9]+[\.][A-Za-z0-9]+/"
+            - Regex : "/[a-z0-9A-Z]+(\.)[a-z0-9A-Z]+([a-zA-Z])/"

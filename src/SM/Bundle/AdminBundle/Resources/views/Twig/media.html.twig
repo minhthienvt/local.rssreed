@@ -1,0 +1,55 @@
+{% spaceless %}
+<a href="#backgroundModal" role="button" class="btn" data-toggle="modal">Select Background</a>
+
+<!-- Modal -->
+<div id="backgroundModal" class="modal hide fade" style="width: 580px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="backgroundModalLabel">Select Background</h3>
+    </div>
+    <div class="modal-body">
+        <ul class="thumbnails">
+            {% for opt in optMedias %}
+                <li style="text-align: center;">
+                <label class="thumbnail" for="bg_{{ mediaName }}_{{ opt.id }}">
+                    <img src="{{ mediaPath~opt.name }}" width="100px" />
+                </label>
+                    <input id="bg_{{ mediaName }}_{{ opt.id }}" name="bg_{{ mediaName }}" imagepath="{{ mediaPath~opt.name }}" type="{% if options.multiple is defined %}{% if options.multiple %}checkbox{% else %}radio{% endif %}{% else %}radio{% endif %}" value="{{ opt.id }}" />
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            {% if options.multiple is defined %}
+                {% if options.multiple %}
+                    <div class="span2">
+                        <a class="btn" onclick="checkAll('{{ mediaName }}');" >Select All</a>
+                        <a class="btn" onclick="clearAll('{{ mediaName }}');" >Clear All</a>
+                    </div>
+                {% endif %}
+            {% endif %}
+            <div class="pull-right">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary" data-dismiss="modal" onclick="applySelect('{{ mediaName }}')">Select</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <ul class="thumbnails" id="preview_{{ mediaName }}">
+    </ul>
+</div>
+
+<script type="text/javascript" >
+    var mediaPath = "{{ mediaPath }}";
+    $(function() {
+        initSelect('{{ mediaName }}');
+        $('#backgroundModal').on('hidden', function () {
+            alert('ds');
+        });
+    });
+</script>
+
+{% endspaceless %}

@@ -1,0 +1,20 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: awakit_itce_rss
+    database_user: awakit
+    database_password: awakit
+    host : http://itce-rss.awakit.sutrix.com
+    locale: en
+    secret: d00245c7bda39aa016baa57370bfebc9b11deda3
+    database_path: null
+
+    per_item_page: 10
+    upload : "/uploads/"
+    upload_accept_file_types : "/(gif|jpg|png|jpeg|svg)$/i"
+    dir_rss_feed : "/uploads/rss-feed"
+    time_cron : 30
+    rss_user : 'quang.tran'
+    rss_password: '12dsfsdf'
+

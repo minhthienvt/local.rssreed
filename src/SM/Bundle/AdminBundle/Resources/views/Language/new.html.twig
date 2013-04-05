@@ -1,0 +1,41 @@
+{% extends 'SMAdminBundle::admin.html.twig' %}
+{% block body %}
+<h1>Language creation</h1>
+
+<form action="{{ path('admin_language_create') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="input01">{{ form_label(form.name) }}</label>
+            <div class="controls">
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input01">{{ form_label(form.lang_key) }}</label>
+            <div class="controls">
+                {{ form_errors(form.lang_key) }}
+                {{ form_widget(form.lang_key) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="optionsCheckbox">{{ form_label(form.is_default) }}</label>
+            <div class="controls">
+              <label class="checkbox">
+                    {{ form_errors(form.is_default) }}
+                    {{ form_widget(form.is_default) }}
+              </label>
+            </div>
+        </div>
+        <div class="form-actions">
+            {{ form_row(form._token) }}
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <a href="{{ path('admin_language', {'page' : 1}) }}" class="btn">Back To List</a>
+        </div>
+
+    </fieldset>
+</form>
+
+{% endblock %}

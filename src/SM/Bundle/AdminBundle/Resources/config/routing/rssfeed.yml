@@ -1,0 +1,46 @@
+admin_rssfeed:
+    pattern:  /{page}
+    defaults: { _controller: "SMAdminBundle:RssFeed:index", page: 1}
+    requirements:
+        page:  \d+
+
+admin_rssfeed_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SMAdminBundle:RssFeed:show" }
+
+admin_rssfeed_new:
+    pattern:  /new
+    defaults: { _controller: "SMAdminBundle:RssFeed:new" }
+
+admin_rssfeed_create:
+    pattern:  /create
+    defaults: { _controller: "SMAdminBundle:RssFeed:create" }
+    requirements: { _method: post }
+
+admin_rssfeed_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SMAdminBundle:RssFeed:edit" }
+
+admin_rssfeed_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SMAdminBundle:RssFeed:update" }
+    requirements: { _method: post }
+
+admin_rssfeed_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "SMAdminBundle:RssFeed:delete" }
+    requirements: { _method: post|get }
+
+admin_rssfeed_delete_all:
+    pattern:  /deleteall
+    defaults: { _controller: "SMAdminBundle:RssFeed:deleteAll" }
+    requirements: { _method: post }
+
+admin_rssfeed_refesh:
+    pattern:  /{id}/refeshRss
+    defaults: { _controller: "SMAdminBundle:RssFeed:refeshRss" }
+    requirements: { _method: get }
+
+admin_rssfeed_test:
+    pattern:  /test
+    defaults: { _controller: "SMAdminBundle:RssFeed:test" }

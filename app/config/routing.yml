@@ -1,0 +1,36 @@
+sm_soap:
+    resource: "@SMSoapBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sm_acl:
+    resource: "@SMAclBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sm_admin:
+    resource: "@SMAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sm_admin_user:
+    resource: "@SMAdminBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/user
+
+sm_admin_role:
+    resource: "@SMAdminBundle/Resources/config/routing/role.yml"
+    prefix:   /admin/role
+
+sm_admin_group:
+    resource: "@SMAdminBundle/Resources/config/routing/group.yml"
+    prefix:   /admin/group
+
+# Internal routing configuration to handle ESI
+# ****** WARNING ******
+# This route should be enabled with caution as it can open a security vulnerability
+# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
+# ****** WARNING ******
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
+
+sm_admin_language:
+    resource: "@SMAdminBundle/Resources/config/routing/language.yml"
+    prefix:   /admin/language

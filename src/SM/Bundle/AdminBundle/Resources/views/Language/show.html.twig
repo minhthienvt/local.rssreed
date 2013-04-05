@@ -1,0 +1,45 @@
+{% extends 'SMAdminBundle::admin.html.twig' %}
+{% block body %}
+<h1>Language</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <td>Id</td>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{ entity.name }}</td>
+        </tr>
+        <tr>
+            <td>Lang key</td>
+            <td>{{ entity.langkey }}</td>
+        </tr>
+        <tr>
+            <td>Is Default</td>
+            <td>
+                {% if entity.isdefault == 1 %}
+                    <input type="checkbox" checked="checked" disabled="true"/>
+                {% else %}
+                    <input type="checkbox" readonly="true" disabled="true"/>
+                {% endif%}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <a href="{{ path('admin_language', {'page' : 1}) }}" class="btn">Back To List</a>
+                &nbsp;
+                <a href="{{ path('admin_language_edit', { 'id': entity.id }) }}" class="btn">Edit</a>
+                {#
+                <form action="{{ path('admin_language_delete', { 'id': entity.id }) }}" method="post">
+                    {{ form_widget(delete_form) }}
+                        <button type="submit" class="btn">Delete</button>
+                </form>
+                #}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

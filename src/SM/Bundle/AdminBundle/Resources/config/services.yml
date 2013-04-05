@@ -1,0 +1,15 @@
+parameters:
+#    sm_admin.example.class: SM\Bundle\AdminBundle\Example
+
+services:
+    sm.admin.pool:
+        class: SM\Bundle\AdminBundle\Admin\Pool
+        arguments:
+            - "@service_container"
+            - ~
+            - ~
+
+    sm.twig.media_extension:
+        class: SM\Bundle\AdminBundle\Twig\SMTwigMediaExtension
+        tags:
+            - { name: twig.extension }

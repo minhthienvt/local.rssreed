@@ -1,0 +1,14 @@
+{% extends 'SMAdminBundle::layout.html.twig' %}
+{% block body %}
+<h1>User creation</h1>
+
+<form action="{{ path('admin_user_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <a class="btn" href="{{ path('admin_user') }}">
+            Back to the list
+        </a>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </p>
+</form>
+{% endblock %}

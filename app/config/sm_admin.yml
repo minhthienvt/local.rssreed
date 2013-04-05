@@ -1,0 +1,6 @@
+sm_admin:
+    dashboard:
+        - { class: SM\Bundle\AdminBundle\Entity\User,   group: User, label: User,   acl: true,  action: [admin_user_new, admin_user] }
+
+        - { class: SM\Bundle\AdminBundle\Entity\RssFeed,   group: Rss Feed, label: Rss Feed,   acl: true,  action: [admin_rssfeed_new, admin_rssfeed] }
+    templates: 5

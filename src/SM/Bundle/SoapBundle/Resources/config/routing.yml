@@ -1,0 +1,6 @@
+sm_soap_server:
+    pattern:  /soap/server
+    defaults: { _controller: SMSoapBundle:Default:server }
+sm_soap_wsdl:
+    pattern:  /soap/wsdl
+    defaults: { _controller: SMSoapBundle:Default:wsdl }

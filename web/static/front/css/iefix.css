@@ -1,0 +1,16 @@
+/*
+main font:Gravur-Condensed
+main background color: #fff
+*/
+
+/*font-face*/
+@font-face {font-family: 'ChevinPro-ExtraBoldItalic';src: url('../fonts/23282B_0_0.eot');src: url('../fonts/23282B_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/23282B_0_0.woff') format('woff'),url('../fonts/23282B_0_0.ttf') format('truetype');}
+ 
+  
+ @font-face {font-family: 'ChevinPro-BoldItalic';src: url('../fonts/23282B_1_0.eot');src: url('../fonts/23282B_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/23282B_1_0.woff') format('woff'),url('../fonts/23282B_1_0.ttf') format('truetype');}
+ 
+  
+ @font-face {font-family: 'ChevinPro-Light';src: url('../fonts/23282B_2_0.eot');src: url('../fonts/23282B_2_0.eot?#iefix') format('embedded-opentype'),url('../fonts/23282B_2_0.woff') format('woff'),url('../fonts/23282B_2_0.ttf') format('truetype');}
+ 
+  
+ @font-face {font-family: 'ChevinPro-ExtraBold';src: url('../fonts/23282B_3_0.eot');src: url('../fonts/23282B_3_0.eot?#iefix') format('embedded-opentype'),url('../fonts/23282B_3

@@ -1,0 +1,42 @@
+{% extends 'SMAdminBundle::layout.html.twig' %}
+{% block body %}
+<h1>User list</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Fullname</th>
+            <th>Email</th>
+            <th>Created Time</th>
+            <th>Last Updated</th>
+            <th>Active</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('admin_user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.username }}</td>
+            <td>{{ entity.fullname }}</td>
+            <td>{{ entity.email }}</td>
+            <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.active }}</td>
+            <td>
+                <div>
+                    <a href="{{ path('admin_user_show', { 'id': entity.id }) }}"><i class="icon-search"></i>show</a>
+                    <a href="{{ path('admin_user_edit', { 'id': entity.id }) }}"><i class="icon-pencil"></i>edit</a>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="{{ path('admin_user_new') }}">
+    Create a new entry
+</a>
+{% endblock %}
