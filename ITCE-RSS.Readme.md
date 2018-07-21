@@ -35,7 +35,7 @@ Have fun !
 NOTE for Developer:
 	- Call web service. We assume call web service by Zend
 
-	$baseurl = 'http://itce-rss.awakit.sutrix.com/web';
+	$baseurl = 'http://itce-rss.awakit.sm.com/web';
         $serverLink = $baseurl . '/soap/server';
         $options = array('location' => $serverLink, 'uri' => $serverLink);
         try {
@@ -46,7 +46,7 @@ NOTE for Developer:
 	    print_r($result); //Array
 				//(
 				//    [status] => 1
-				//    [link] => http://itce-rss.awakit.sutrix.com/web/uploads/rss-feed/512c659d76a75.xml
+				//    [link] => http://itce-rss.awakit.sm.com/web/uploads/rss-feed/512c659d76a75.xml
 				//)
 
         } catch (\SoapFault $s){
